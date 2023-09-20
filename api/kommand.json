@@ -1,0 +1,37 @@
+{
+    "components": {
+        "apigw": {
+            "type": "@apigateway.api",
+            "api_type": "PRIVATE",
+            "vpc_endpoint_ids": ["$vpc_endpoint_id"],
+            "resources": {
+                "/{proxy+}": {
+                    "GET": "@api_lambda:props.arn",
+                    "POST": "@api_lambda:props.arn",
+                    "OPTIONS": "@api_lambda:props.arn"
+                }
+            },
+            "cors_enabled": true
+        },
+        "api_lambda": {
+            "type": "@lambda.function",
+            "runtime": "python3.11",
+            "description": "Private API Handler",
+            "timeout": 10,
+            "policy_arns": ["arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"],
+            "requirements.txt": true,
+            "requirements_runtime": "python3.11",
+            "subnet_ids": [
+                "subnet-02b9a18439358d466",
+                "subnet-09b4ae829bce22d28"
+            ],
+            "security_group_ids": [
+                "sg-045e644c6acd73974"
+            ]
+        }
+    },
+    "repos": {
+        "apigateway": "https://github.com/cloudkommand/apigateway",
+        "lambda": "https://github.com/cloudkommand/lambda"
+    }
+}

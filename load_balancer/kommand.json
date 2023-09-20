@@ -1,0 +1,18 @@
+{
+    "components": {
+        "balancer": {
+            "type": "@elb.load_balancer",
+            "subnet_ids": [
+                "subnet-02b9a18439358d466",
+                "subnet-09b4ae829bce22d28"
+            ],
+            "security_group_ids": [
+                "sg-045e644c6acd73974"
+            ]
+        },
+        "target_group"
+    },
+    "repos": {
+        "elb": "https://github.com/cloudkommand/elb"
+    }
+}
