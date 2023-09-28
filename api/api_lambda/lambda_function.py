@@ -16,7 +16,7 @@ from aws_lambda_powertools import Logger
 
 
 
-logger = Logger(service="whiplash-api")
+logger = Logger(service="private-api-v1")
 
 app = FastAPI(
     title="V1 API",
