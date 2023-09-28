@@ -1,9 +1,9 @@
 {
     "components": {
         "apigw": {
-            "type": "@apigateway.api",
+            "type": "@apigw.api",
             "api_type": "PRIVATE",
-            "vpc_endpoint_ids": ["$vpc_endpoint_id"],
+            "vpc_endpoint_ids": ["vpce-0da57e7b0f5f24d7d"],
             "resources": {
                 "/{proxy+}": {
                     "GET": "@api_lambda:props.arn",
@@ -31,7 +31,7 @@
         }
     },
     "repos": {
-        "apigateway": "https://github.com/cloudkommand/apigateway",
+        "apigw": "https://github.com/cloudkommand/apigateway",
         "lambda": "https://github.com/cloudkommand/lambda"
     }
 }

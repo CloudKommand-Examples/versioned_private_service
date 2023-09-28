@@ -19,13 +19,8 @@ from aws_lambda_powertools import Logger
 logger = Logger(service="whiplash-api")
 
 app = FastAPI(
-    title="Whiplash API",
-    summary="CloudKommand-deployed standalone API that provides an easy-to-use api interface for self-hosted Whiplash, a serverless vector store.",
-    description="""
-The fundamental units in Whiplash are collections and items, where an item is a vector, and a collection is a set of items that are indexed for fast search. 
-
-Default settings for collections are set during deployment, but all settings can be changed when creating a collection.
-    """,
+    title="V1 API",
+    summary="CloudKommand-deployed V1 API",
     docs_url="/docs",
     root_path="/live",
     version=os.environ.get("VERSION", "1.0.0")
