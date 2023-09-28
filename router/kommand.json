@@ -1,0 +1,51 @@
+{
+    "components": {
+        "apigw_domain": {
+            "type": "@apigw.domain_name",
+            "name": "private.ckpersonal.link"
+        },
+        "domain": {
+            "type": "@route53.record",
+            "domain": "private.ckpersonal.link",
+            "route53_hosted_zone_id": "Z06066421MSUA37JJ8STF",
+            "target_hosted_zone_id": "@balancer:props.canonical_hosted_zone_id",
+            "target_dns_name": "@balancer:props.dns_name"
+        },
+        "balancer": {
+            "type": "@elb.load_balancer",
+            "subnet_ids": [
+                "subnet-02b9a18439358d466",
+                "subnet-09b4ae829bce22d28"
+            ],
+            "security_group_ids": [
+                "sg-045e644c6acd73974"
+            ]
+        },
+        "target_group": {
+            "type": "@elb.target_group",
+            "vpc_id": "vpc-022e186b7552d5881",
+            "target_type": "ip",
+            "targets": [
+                {
+                    "id": "10.0.153.10",
+                    "port": 443
+                },
+                {
+                    "id": "10.0.141.206",
+                    "port": 443
+                }
+            ]
+        },
+        "listener": {
+            "type": "@elb.listener",
+            "certificate_arn": "@apigw_domain:props.certificate_arn",
+            "load_balancer_arn": "@balancer:props.arn",
+            "target_group_arn": "@target_group:props.arn"
+        }
+    },
+    "repos": {
+        "elb": "https://github.com/cloudkommand/elb",
+        "apigw": "https://github.com/cloudkommand/apigateway",
+        "r53": "https://github.com/cloudkommand/route53"
+    }
+}
