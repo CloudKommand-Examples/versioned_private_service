@@ -16,11 +16,11 @@ from aws_lambda_powertools import Logger
 
 
 
-logger = Logger(service="private-api-v1")
+logger = Logger(service="private-api-v2")
 
 app = FastAPI(
-    title="V1 API",
-    summary="CloudKommand-deployed V1 API",
+    title="V2 API",
+    summary="CloudKommand-deployed V2 API",
     docs_url="/docs",
     root_path="/live",
     version=os.environ.get("VERSION", "1.0.0")
@@ -40,9 +40,9 @@ async def unhandled_exception_handler(request, err):
     logger.exception(f"Unhandled exception in {request.url.path}: {err}")
     return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})
 
-@app.get("/v1/version", tags=["Version"])
+@app.get("/v2/version", tags=["Version"])
 async def version() -> str:
-    return "V1"
+    return "V2"
 
 
 # @app.post("/initialize", tags=["Initialize"])

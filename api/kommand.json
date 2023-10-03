@@ -34,7 +34,7 @@
             "domain_name": "router_project_ref",
             "api_id": "@apigw:props.id",
             "stage_name": "@apigw:props.stage_name",
-            "base_path": "v1"
+            "base_path": "v2"
         }
     },
     "repos": {
