@@ -33,7 +33,7 @@
             "type": "@apigw.domain_map",
             "domain_name": "router_project_ref",
             "api_id": "@apigw:props.id",
-            "stage": "@apigw:props.stage_name",
+            "stage_name": "@apigw:props.stage_name",
             "base_path": "v1"
         }
     },
