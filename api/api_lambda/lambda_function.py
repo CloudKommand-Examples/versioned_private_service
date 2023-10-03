@@ -29,7 +29,7 @@ app.add_middleware(ExceptionMiddleware, handlers=app.exception_handlers)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 
-project_router = APIRouter()
+# project_router = APIRouter()
 
 @logger.inject_lambda_context(log_event=True)
 def lambda_handler(event, context):
@@ -40,7 +40,7 @@ async def unhandled_exception_handler(request, err):
     logger.exception(f"Unhandled exception in {request.url.path}: {err}")
     return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})
 
-@app.get("/version", tags=["Version"])
+@app.get("/v1/version", tags=["Version"])
 async def version() -> str:
     return "V1"
 
@@ -49,5 +49,5 @@ async def version() -> str:
 # def initialize() -> CreateSuccess:
 #     return api_initialize()
 
-app.include_router(project_router, prefix="/projects")
+# app.include_router(project_router, prefix="/projects")
 
